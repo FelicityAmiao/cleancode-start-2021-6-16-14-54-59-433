@@ -1,28 +1,50 @@
 package com.tw.academy.basic.$6_primitive_obsession.practiceTwo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class OrderInfo {
 
-  private HashMap<String, HashMap<String, HashMap<String, Integer>>> ordered = new HashMap<>();
+  private List<CourtBookedItem> courtBookedItems = new ArrayList<>();
 
   public OrderInfo() {
 
   }
 
-  public HashMap<String, HashMap<String, HashMap<String, Integer>>> getOrdered() {
-    return ordered;
+  public void saveOneOrderInfo(String id, HashMap<String, HashMap<String, Integer>> monthMap) {
+    CourtBookedItem courtBookedItem = findCourtBookedItemByCourtId(id);
+    if(courtBookedItem != null) {
+      saveCurrentMonthMapToSameCourt(monthMap, courtBookedItem);
+      return;
+    }
+    saveNewCourtBookedItem(id, monthMap);
   }
 
-  public void setOrdered(HashMap<String, HashMap<String, HashMap<String, Integer>>> ordered) {
-    this.ordered = ordered;
+  private void saveNewCourtBookedItem(String id, HashMap<String, HashMap<String, Integer>> monthMap) {
+    courtBookedItems.add(new CourtBookedItem(id, monthMap));
   }
 
-  public HashMap<String, HashMap<String, Integer>> saveOneOrderInfo(String id, HashMap<String, HashMap<String, Integer>> monthMap) {
-      return getOrdered().put(id, monthMap);
+  private void saveCurrentMonthMapToSameCourt(HashMap<String, HashMap<String, Integer>> monthMap, CourtBookedItem courtBookedItem) {
+    courtBookedItem.getBookedMonths().putAll(monthMap);
+  }
+
+  private CourtBookedItem findCourtBookedItemByCourtId(String courtId) {
+    CourtBookedItem result = null;
+    for (CourtBookedItem courtBookedItem : courtBookedItems) {
+      if (courtBookedItem.getCourtId().equals(courtId)) {
+        result = courtBookedItem;
+      }
+    }
+    return result;
   }
 
   public HashMap<String, HashMap<String, Integer>> getBookedItemsByCourtId(String id) {
-      return getOrdered().getOrDefault(id, null);
+    for (CourtBookedItem courtBookedItem : courtBookedItems) {
+      if(courtBookedItem.getCourtId().equals(id)) {
+        return courtBookedItem.getBookedMonths();
+      }
+    }
+    return null;
   }
 }
