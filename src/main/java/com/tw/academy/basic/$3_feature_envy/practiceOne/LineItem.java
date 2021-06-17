@@ -12,10 +12,6 @@ public class LineItem {
 		this.quantity = quantity;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
 	public double getPrice() {
 		return price;
 	}
