@@ -5,6 +5,14 @@ public class LineItem {
 	private double price;
 	private int quantity;
 
+	public double getPrice() {
+		return price;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
 	public LineItem(String description, double p, int quantity) {
 		super();
 		this.description = description;
@@ -13,6 +21,6 @@ public class LineItem {
 	}
 
 	public double calculateSubTotal() {
-		return price * quantity;
+		return getPrice() * getQuantity();
 	}
 }
