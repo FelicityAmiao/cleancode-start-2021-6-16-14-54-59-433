@@ -21,26 +21,65 @@ public class OrderReceipt {
 
     public String printReceipt() {
         StringBuilder receipt = new StringBuilder();
-        receipt.append(RECEIPT_HEADER);
-        receipt.append(o.getCustomerName());
-        receipt.append(o.getCustomerAddress());
-        double totalSalesTax = 0d;
+        printHeader(receipt);
+        printCustomerInfo(receipt);
+        printItemsInfo(receipt);
+        printTotalSalesTax(receipt, calculateTotalSalesTax());
+        printTotalAmount(receipt, calculateTotalAmount());
+        return receipt.toString();
+    }
+
+    private double calculateTotalAmount() {
         double totalAmount = 0d;
         for (LineItem lineItem : o.getLineItems()) {
-            receipt.append(lineItem.getDescription());
-            receipt.append('\t');
-            receipt.append(lineItem.getPrice());
-            receipt.append('\t');
-            receipt.append(lineItem.getQuantity());
-            receipt.append('\t');
-            receipt.append(lineItem.totalAmount());
-            receipt.append('\n');
-            double salesTax = lineItem.totalAmount() * TAX_RATE;
-            totalSalesTax += salesTax;
-            totalAmount += lineItem.totalAmount() + salesTax;
+            totalAmount += lineItem.totalAmount() + calculateTaxAmount(lineItem);
         }
-        receipt.append(RECEIPT_SALES_TAX).append('\t').append(totalSalesTax);
-        receipt.append(RECEIPT_TOTAL_AMOUNT).append('\t').append(totalAmount);
-        return receipt.toString();
+        return totalAmount;
+    }
+
+    private void printItemsInfo(StringBuilder receipt) {
+        for (LineItem lineItem : o.getLineItems()) {
+            printItemInfo(receipt, lineItem);
+        }
+    }
+
+    private double calculateTotalSalesTax() {
+        double totalSalesTax = 0d;
+        for (LineItem lineItem : o.getLineItems()) {
+            totalSalesTax += calculateTaxAmount(lineItem);
+        }
+        return totalSalesTax;
+    }
+
+    private StringBuilder printTotalAmount(StringBuilder receipt, double totalAmount) {
+        return receipt.append(RECEIPT_TOTAL_AMOUNT).append('\t').append(totalAmount);
+    }
+
+    private StringBuilder printTotalSalesTax(StringBuilder receipt, double totalSalesTax) {
+        return receipt.append(RECEIPT_SALES_TAX).append('\t').append(totalSalesTax);
+    }
+
+    private double calculateTaxAmount(LineItem lineItem) {
+        return lineItem.totalAmount() * TAX_RATE;
+    }
+
+    private void printItemInfo(StringBuilder receipt, LineItem lineItem) {
+        receipt.append(lineItem.getDescription());
+        receipt.append('\t');
+        receipt.append(lineItem.getPrice());
+        receipt.append('\t');
+        receipt.append(lineItem.getQuantity());
+        receipt.append('\t');
+        receipt.append(lineItem.totalAmount());
+        receipt.append('\n');
+    }
+
+    private void printCustomerInfo(StringBuilder receipt) {
+        receipt.append(o.getCustomerName());
+        receipt.append(o.getCustomerAddress());
+    }
+
+    private StringBuilder printHeader(StringBuilder receipt) {
+        return receipt.append(RECEIPT_HEADER);
     }
 }
