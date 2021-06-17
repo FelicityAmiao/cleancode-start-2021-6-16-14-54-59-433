@@ -6,8 +6,9 @@ public class User {
   private String buyerPhoneNumber;
   private String buyerAddress;
 
-  public User(String buyerName) {
+  public User(String buyerName, String buyerPhoneNumber) {
     this.buyerName = buyerName;
+    this.buyerPhoneNumber = buyerPhoneNumber;
   }
 
   public String getBuyerName() {
