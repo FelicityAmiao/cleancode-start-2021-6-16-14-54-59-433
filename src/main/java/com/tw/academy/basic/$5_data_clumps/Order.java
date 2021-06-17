@@ -12,7 +12,7 @@ public class Order {
 
     public Order(int orderNumber, User user) {
         this.orderNumber = orderNumber;
-        this.user = new User(user.getBuyerName(), user.getBuyerPhoneNumber(), user.getBuyerAddress());
+        this.user = user;
     }
 
     public String confirm(){
