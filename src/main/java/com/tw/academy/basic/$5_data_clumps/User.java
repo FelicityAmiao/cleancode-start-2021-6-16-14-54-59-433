@@ -6,6 +6,10 @@ public class User {
   private String buyerPhoneNumber;
   private String buyerAddress;
 
+  public User(String buyerName) {
+    this.buyerName = buyerName;
+  }
+
   public String getBuyerName() {
     return buyerName;
   }
