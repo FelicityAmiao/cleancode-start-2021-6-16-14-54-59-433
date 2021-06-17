@@ -7,19 +7,12 @@ public class Parcel {
     private String size;
     private Double weight;
 
-    private String senderName;
-    private String senderPhoneNumber;
-    private String senderAddress;
-
     public Parcel(String size, Double weight,
         Receiver receiver, Sender sender) {
         this.size = size;
         this.weight = weight;
         this.receiver = receiver;
         this.sender = sender;
-        this.senderName = this.sender.getSenderName();
-        this.senderPhoneNumber = this.sender.getSenderPhoneNumber();
-        this.senderAddress = this.sender.getSenderAddress();
     }
 
     public String confirmReceiver(){
@@ -31,6 +24,6 @@ public class Parcel {
     public String confirmSender(){
         return String.format("Please confirm sender information: sender name is %s, " +
                         "sender phone number is %s and sender address is %s.\n",
-                senderName, senderPhoneNumber, senderAddress);
+            this.sender.getSenderName(), this.sender.getSenderPhoneNumber(), this.sender.getSenderAddress());
     }
 }
