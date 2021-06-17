@@ -17,6 +17,10 @@ public class MorseCodeDecoder {
             }
             decodedMorseCode.append(WORD_SEPARATOR);
         }
+        return ignoreNonMorseCodeChar(decodedMorseCode);
+    }
+
+    private static String ignoreNonMorseCodeChar(StringBuilder decodedMorseCode) {
         return decodedMorseCode.toString().replaceAll(NON_MORSE_CODE_CHAR, "").trim();
     }
 }
