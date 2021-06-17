@@ -23,19 +23,25 @@ public class Order {
         this.user.setBuyerPhoneNumber(buyerPhoneNumber);
     }
 
-    private String buyerAddress;
+    public String getBuyerAddress() {
+        return this.user.getBuyerAddress();
+    }
+
+    public void setBuyerAddress(String buyerAddress) {
+        this.user.setBuyerAddress(buyerAddress);
+    }
 
     public Order(int orderNumber, String buyerName, String buyerPhoneNumber, String buyerAddress) {
         this.orderNumber = orderNumber;
 
         this.setBuyerName(buyerName);
         this.setBuyerPhoneNumber(buyerPhoneNumber);
-        this.buyerAddress = buyerAddress;
+        this.setBuyerAddress(buyerAddress);
     }
 
     public String confirm(){
         return String.format("Please confirm buyer information: buyer name is %s, " +
-                "buyer phone number is %s and buyer address is %s.", this.getBuyerName(), this.getBuyerPhoneNumber(), buyerAddress);
+                "buyer phone number is %s and buyer address is %s.", this.getBuyerName(), this.getBuyerPhoneNumber(), this.getBuyerAddress());
     }
 }
 
