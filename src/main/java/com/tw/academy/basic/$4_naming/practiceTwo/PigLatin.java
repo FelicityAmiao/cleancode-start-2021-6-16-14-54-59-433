@@ -1,15 +1,18 @@
 package com.tw.academy.basic.$4_naming.practiceTwo;
 
 public class PigLatin {
+
+    public static final String WORD_SEPARATOR = " ";
+
     public static String pigIt(String str) {
         String[] punctuation={".",",","-",":",";","!","?"};
-        String[] word = str.split(" ");
+        String[] word = str.split(WORD_SEPARATOR);
         for (int i = 0; i < word.length; i++){
             if (isCurrentWordContainsPunctuation(punctuation, word[i])) {
                 moveCurrentWordFirstCharToEndAddAy(word, i);
             }
         }
-        return String.join(" ", word);
+        return String.join(WORD_SEPARATOR, word);
     }
 
     private static void moveCurrentWordFirstCharToEndAddAy(String[] word, int i) {
