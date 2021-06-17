@@ -7,7 +7,6 @@ public class Order {
     private String buyerName;
     private String buyerPhoneNumber;
     private String buyerAddress;
-    private User user;
 
     public Order(int orderNumber, User user) {
         this.orderNumber = orderNumber;
@@ -15,7 +14,6 @@ public class Order {
         this.buyerName = user.getBuyerName();
         this.buyerPhoneNumber = user.getBuyerPhoneNumber();
         this.buyerAddress = user.getBuyerAddress();
-        this.user = user;
     }
 
     public String confirm(){
