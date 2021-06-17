@@ -3,24 +3,24 @@ package com.tw.academy.basic.$4_naming.practiceTwo;
 public class PigLatin {
     //Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
     public static String pigIt(String str) {
-        String[] arr_mark={".",",","-",":",";","!","?"};
-        String[] arr = str.split(" ");
+        String[] punctuation={".",",","-",":",";","!","?"};
+        String[] word = str.split(" ");
         char c;
-        boolean flag = true;
+        boolean keepOriginChar = true;
 
-        for (int i = 0; i < arr.length; i++){
-            for (int j = 0; j < arr_mark.length; j++)
-                if(arr[i].contains(arr_mark[j]) == true)
-                    flag = false;
+        for (int i = 0; i < word.length; i++){
+            for (int j = 0; j < punctuation.length; j++)
+                if(word[i].contains(punctuation[j]) == true)
+                    keepOriginChar = false;
 
-            if (flag){
-                c = arr[i].charAt(0);
-                arr[i] = arr[i].substring(1, arr[i].length());
-                arr[i] = arr[i].replace(arr[i], arr[i] + c + "ay");
+            if (keepOriginChar){
+                c = word[i].charAt(0);
+                word[i] = word[i].substring(1, word[i].length());
+                word[i] = word[i].replace(word[i], word[i] + c + "ay");
             }
-            flag = true;
+            keepOriginChar = true;
         }
 
-        return String.join(" ", arr);
+        return String.join(" ", word);
     }
 }
