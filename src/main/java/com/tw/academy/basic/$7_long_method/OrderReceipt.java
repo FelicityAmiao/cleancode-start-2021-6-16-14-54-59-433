@@ -24,31 +24,13 @@ public class OrderReceipt {
         printHeader(receipt);
         printCustomerInfo(receipt);
         printItemsInfo(receipt);
-        printTotalSalesTax(receipt, calculateTotalSalesTax());
-        printTotalAmount(receipt, calculateTotalAmount());
+        printTotalSalesTax(receipt, o.calculateTotalSalesTax());
+        printTotalAmount(receipt, o.calculateTotalAmount());
         return receipt.toString();
     }
 
-    private double calculateTotalAmount() {
-        double totalAmount = 0d;
-        for (LineItem lineItem : o.getLineItems()) {
-            totalAmount += lineItem.totalAmount() + calculateTaxAmount(lineItem);
-        }
-        return totalAmount;
-    }
-
     private void printItemsInfo(StringBuilder receipt) {
-        for (LineItem lineItem : o.getLineItems()) {
-            printItemInfo(receipt, lineItem);
-        }
-    }
-
-    private double calculateTotalSalesTax() {
-        double totalSalesTax = 0d;
-        for (LineItem lineItem : o.getLineItems()) {
-            totalSalesTax += calculateTaxAmount(lineItem);
-        }
-        return totalSalesTax;
+        receipt.append(o.getOrderItemsInfo());
     }
 
     private StringBuilder printTotalAmount(StringBuilder receipt, double totalAmount) {
@@ -59,24 +41,8 @@ public class OrderReceipt {
         return receipt.append(RECEIPT_SALES_TAX).append('\t').append(totalSalesTax);
     }
 
-    private double calculateTaxAmount(LineItem lineItem) {
-        return lineItem.totalAmount() * TAX_RATE;
-    }
-
-    private void printItemInfo(StringBuilder receipt, LineItem lineItem) {
-        receipt.append(lineItem.getDescription());
-        receipt.append('\t');
-        receipt.append(lineItem.getPrice());
-        receipt.append('\t');
-        receipt.append(lineItem.getQuantity());
-        receipt.append('\t');
-        receipt.append(lineItem.totalAmount());
-        receipt.append('\n');
-    }
-
     private void printCustomerInfo(StringBuilder receipt) {
-        receipt.append(o.getCustomerName());
-        receipt.append(o.getCustomerAddress());
+        receipt.append(o.getCustomerInfo());
     }
 
     private StringBuilder printHeader(StringBuilder receipt) {
