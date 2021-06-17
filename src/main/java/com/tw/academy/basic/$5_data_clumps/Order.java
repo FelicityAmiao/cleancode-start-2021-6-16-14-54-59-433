@@ -8,9 +8,7 @@ public class Order {
 
     public Order(int orderNumber, String buyerName, String buyerPhoneNumber, String buyerAddress) {
         this.orderNumber = orderNumber;
-
-        this.user = new User(buyerName, buyerPhoneNumber);
-        this.user.setBuyerAddress(buyerAddress);
+        this.user = new User(buyerName, buyerPhoneNumber, buyerAddress);
     }
 
     public String confirm(){
