@@ -19,12 +19,12 @@ public class OrderService {
         timeMap.put("min", Integer.parseInt(timeArr[0].split(":")[0]));
         HashMap<String, HashMap<String, Integer>> monthMap = new HashMap<>();
         monthMap.put(month, timeMap);
-        getOrdered().put(id, monthMap);
+        orderInfo.getOrdered().put(id, monthMap);
         return "Success! You can use the No." + id + " court during " + month + " " + time + ".";
     }
 
     public Boolean hasBeenOrdered(String id, String month, String[] timeArr) {
-        HashMap<String, HashMap<String, Integer>> countHasBook = getOrdered().getOrDefault(id, null);
+        HashMap<String, HashMap<String, Integer>> countHasBook = orderInfo.getOrdered().getOrDefault(id, null);
         if (countHasBook == null) {
             return false;
         }
@@ -57,13 +57,6 @@ public class OrderService {
 
     private Integer getToBeOrderedMaxTimeHour(String[] timeArr) {
         return Integer.parseInt(timeArr[1].split(":")[0]);
-    }
-
-    /**
-     * 已预定
-     */
-    public HashMap<String, HashMap<String, HashMap<String, Integer>>> getOrdered() {
-        return orderInfo.getOrdered();
     }
 
     /* other functions */
