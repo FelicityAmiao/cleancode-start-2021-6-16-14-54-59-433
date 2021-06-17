@@ -19,7 +19,7 @@ public class OrderService {
         timeMap.put("min", Integer.parseInt(timeArr[0].split(":")[0]));
         HashMap<String, HashMap<String, Integer>> monthMap = new HashMap<>();
         monthMap.put(month, timeMap);
-        orderInfo.getOrdered().put(id, monthMap);
+        orderInfo.saveOneOrderInfo(id, monthMap);
         return "Success! You can use the No." + id + " court during " + month + " " + time + ".";
     }
 

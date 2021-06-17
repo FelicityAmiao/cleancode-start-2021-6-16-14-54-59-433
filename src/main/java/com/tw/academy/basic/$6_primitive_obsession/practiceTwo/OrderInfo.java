@@ -17,4 +17,8 @@ public class OrderInfo {
   public void setOrdered(HashMap<String, HashMap<String, HashMap<String, Integer>>> ordered) {
     this.ordered = ordered;
   }
+
+  public HashMap<String, HashMap<String, Integer>> saveOneOrderInfo(String id, HashMap<String, HashMap<String, Integer>> monthMap) {
+      return getOrdered().put(id, monthMap);
+  }
 }
