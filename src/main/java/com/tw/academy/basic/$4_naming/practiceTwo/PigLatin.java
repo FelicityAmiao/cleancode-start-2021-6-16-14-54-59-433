@@ -8,9 +8,9 @@ public class PigLatin {
     public static String pigIt(String sentence) {
         String[] punctuation={".",",","-",":",";","!","?"};
         String[] words = sentence.split(WORD_SEPARATOR);
-        for (int i = 0; i < words.length; i++){
-            if (isCurrentWordContainsPunctuation(punctuation, words[i])) {
-                moveCurrentWordFirstCharToEndAddAy(words, i);
+        for (int currentWordIndex = 0; currentWordIndex < words.length; currentWordIndex++){
+            if (isCurrentWordContainsPunctuation(punctuation, words[currentWordIndex])) {
+                moveCurrentWordFirstCharToEndAddAy(words, currentWordIndex);
             }
         }
         return String.join(WORD_SEPARATOR, words);
@@ -22,9 +22,9 @@ public class PigLatin {
         word[i] = word[i].replace(word[i], word[i] + firstLetter + DECODED_SUFFIX);
     }
 
-    private static boolean isCurrentWordContainsPunctuation(String[] punctuation, String s) {
-        for (int j = 0; j < punctuation.length; j++) {
-            if(s.contains(punctuation[j])) {
+    private static boolean isCurrentWordContainsPunctuation(String[] punctuations, String s) {
+        for (int currentPunctuationIndex = 0; currentPunctuationIndex < punctuations.length; currentPunctuationIndex++) {
+            if(s.contains(punctuations[currentPunctuationIndex])) {
                 return false;
             }
         }
