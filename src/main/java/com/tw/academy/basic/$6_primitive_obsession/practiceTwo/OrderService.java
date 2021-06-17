@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 public class OrderService {
 
-    private HashMap<String, HashMap<String, HashMap<String, Integer>>> ordered = new HashMap<>();
     private OrderInfo orderInfo = new OrderInfo();
 
     public String order(String id, String month, String time) {
