@@ -24,7 +24,7 @@ public class OrderService {
     }
 
     public Boolean hasBeenOrdered(String id, String month, String[] timeArr) {
-        HashMap<String, HashMap<String, Integer>> countHasBook = getBookedItemsByCourtId(id);
+        HashMap<String, HashMap<String, Integer>> countHasBook = orderInfo.getBookedItemsByCourtId(id);
         if (countHasBook == null) {
             return false;
         }
@@ -39,10 +39,6 @@ public class OrderService {
             return true;
         }
         return false;
-    }
-
-    private HashMap<String, HashMap<String, Integer>> getBookedItemsByCourtId(String id) {
-        return orderInfo.getOrdered().getOrDefault(id, null);
     }
 
     private boolean isToBeOrderedMaxTimeHourInsideBookingDate(String[] timeArr, HashMap<String, Integer> countHasBookInThisMonth) {

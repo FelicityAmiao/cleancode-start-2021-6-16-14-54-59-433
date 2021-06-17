@@ -21,4 +21,8 @@ public class OrderInfo {
   public HashMap<String, HashMap<String, Integer>> saveOneOrderInfo(String id, HashMap<String, HashMap<String, Integer>> monthMap) {
       return getOrdered().put(id, monthMap);
   }
+
+  public HashMap<String, HashMap<String, Integer>> getBookedItemsByCourtId(String id) {
+      return getOrdered().getOrDefault(id, null);
+  }
 }
