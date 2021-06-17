@@ -6,10 +6,6 @@ public class Order {
 
     private User user;
 
-    public Order(int orderNumber, String buyerName, String buyerPhoneNumber, String buyerAddress) {
-        this(orderNumber, new User(buyerName, buyerPhoneNumber, buyerAddress));
-    }
-
     public Order(int orderNumber, User user) {
         this.orderNumber = orderNumber;
         this.user = user;
