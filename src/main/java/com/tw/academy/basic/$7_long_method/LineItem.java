@@ -1,6 +1,9 @@
 package com.tw.academy.basic.$7_long_method;
 
 public class LineItem {
+
+	public static final String LINE_ITEM_SEPARATOR = "\t";
+	public static final String LINE_SEPARATOR = "\n";
 	private String description;
 	private double price;
 	private int quantity;
@@ -18,7 +21,7 @@ public class LineItem {
 
 	@Override
 	public String toString() {
-		return description + "\t" + price + "\t" + quantity + "\t" + totalAmount() + "\n";
+		return description + LINE_ITEM_SEPARATOR + price + LINE_ITEM_SEPARATOR + quantity + LINE_ITEM_SEPARATOR + totalAmount() + LINE_SEPARATOR;
 	}
 
 	public double calculateTaxAmount() {

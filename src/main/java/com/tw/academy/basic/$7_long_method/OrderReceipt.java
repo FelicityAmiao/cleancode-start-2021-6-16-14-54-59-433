@@ -1,5 +1,7 @@
 package com.tw.academy.basic.$7_long_method;
 
+import static com.tw.academy.basic.$7_long_method.LineItem.LINE_ITEM_SEPARATOR;
+
 /**
  * This class is a example for bad smell;
  *
@@ -34,11 +36,11 @@ public class OrderReceipt {
     }
 
     private StringBuilder printTotalAmount(StringBuilder receipt, double totalAmount) {
-        return receipt.append(RECEIPT_TOTAL_AMOUNT).append('\t').append(totalAmount);
+        return receipt.append(RECEIPT_TOTAL_AMOUNT).append(LINE_ITEM_SEPARATOR).append(totalAmount);
     }
 
     private StringBuilder printTotalSalesTax(StringBuilder receipt, double totalSalesTax) {
-        return receipt.append(RECEIPT_SALES_TAX).append('\t').append(totalSalesTax);
+        return receipt.append(RECEIPT_SALES_TAX).append(LINE_ITEM_SEPARATOR).append(totalSalesTax);
     }
 
     private void printCustomerInfo(StringBuilder receipt) {
