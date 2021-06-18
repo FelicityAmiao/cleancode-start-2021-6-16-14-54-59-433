@@ -13,10 +13,10 @@ public class OrderReceipt {
     public static final String RECEIPT_SALES_TAX = "Sales Tax";
     public static final String RECEIPT_TOTAL_AMOUNT = "Total Amount";
     public static final double TAX_RATE = .10;
-    private Order o;
+    private Order order;
 
-    public OrderReceipt(Order o) {
-        this.o = o;
+    public OrderReceipt(Order order) {
+        this.order = order;
     }
 
     public String printReceipt() {
@@ -24,13 +24,13 @@ public class OrderReceipt {
         printHeader(receipt);
         printCustomerInfo(receipt);
         printItemsInfo(receipt);
-        printTotalSalesTax(receipt, o.calculateTotalSalesTax());
-        printTotalAmount(receipt, o.calculateTotalAmount());
+        printTotalSalesTax(receipt, order.calculateTotalSalesTax());
+        printTotalAmount(receipt, order.calculateTotalAmount());
         return receipt.toString();
     }
 
     private void printItemsInfo(StringBuilder receipt) {
-        receipt.append(o.getOrderItemsInfo());
+        receipt.append(order.getOrderItemsInfo());
     }
 
     private StringBuilder printTotalAmount(StringBuilder receipt, double totalAmount) {
@@ -42,7 +42,7 @@ public class OrderReceipt {
     }
 
     private void printCustomerInfo(StringBuilder receipt) {
-        receipt.append(o.getCustomerInfo());
+        receipt.append(order.getCustomerInfo());
     }
 
     private StringBuilder printHeader(StringBuilder receipt) {
