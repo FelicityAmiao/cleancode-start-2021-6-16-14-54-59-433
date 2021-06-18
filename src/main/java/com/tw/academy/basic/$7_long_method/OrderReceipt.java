@@ -21,33 +21,33 @@ public class OrderReceipt {
         this.order = order;
     }
 
-    public String printReceipt() {
+    public String buildReceipt() {
         StringBuilder receipt = new StringBuilder();
-        printHeader(receipt);
-        printCustomerInfo(receipt);
-        printItemsInfo(receipt);
-        printTotalSalesTax(receipt, order.calculateTotalSalesTax());
-        printTotalAmount(receipt, order.calculateTotalAmount());
+        buildHeader(receipt);
+        buildCustomerInfo(receipt);
+        buildItemsInfo(receipt);
+        buildTotalSalesTax(receipt, order.calculateTotalSalesTax());
+        buildTotalAmount(receipt, order.calculateTotalAmount());
         return receipt.toString();
     }
 
-    private void printItemsInfo(StringBuilder receipt) {
+    private void buildItemsInfo(StringBuilder receipt) {
         receipt.append(order.getOrderItemsInfo());
     }
 
-    private StringBuilder printTotalAmount(StringBuilder receipt, double totalAmount) {
+    private StringBuilder buildTotalAmount(StringBuilder receipt, double totalAmount) {
         return receipt.append(RECEIPT_TOTAL_AMOUNT).append(LINE_ITEM_SEPARATOR).append(totalAmount);
     }
 
-    private StringBuilder printTotalSalesTax(StringBuilder receipt, double totalSalesTax) {
+    private StringBuilder buildTotalSalesTax(StringBuilder receipt, double totalSalesTax) {
         return receipt.append(RECEIPT_SALES_TAX).append(LINE_ITEM_SEPARATOR).append(totalSalesTax);
     }
 
-    private void printCustomerInfo(StringBuilder receipt) {
+    private void buildCustomerInfo(StringBuilder receipt) {
         receipt.append(order.getCustomerInfo());
     }
 
-    private StringBuilder printHeader(StringBuilder receipt) {
+    private StringBuilder buildHeader(StringBuilder receipt) {
         return receipt.append(RECEIPT_HEADER);
     }
 }
